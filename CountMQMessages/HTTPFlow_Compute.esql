@@ -1,6 +1,6 @@
 
 
-CREATE COMPUTE MODULE TimerFlow_Compute
+CREATE COMPUTE MODULE HTTPFlow_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		SET Environment.messageCount = 0;

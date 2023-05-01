@@ -1,0 +1,9 @@
+
+
+CREATE COMPUTE MODULE MQGet_HandleDefaultMessage
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+		RETURN TRUE;
+	END;
+END MODULE;

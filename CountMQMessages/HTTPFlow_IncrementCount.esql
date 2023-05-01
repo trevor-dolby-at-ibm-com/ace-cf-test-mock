@@ -1,6 +1,6 @@
 
 
-CREATE COMPUTE MODULE TimerFlow_IncrementCount
+CREATE COMPUTE MODULE HTTPFlow_IncrementCount
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		SET Environment.messageCount = Environment.messageCount + 1;

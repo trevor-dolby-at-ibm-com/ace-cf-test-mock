@@ -1,0 +1,10 @@
+
+
+CREATE COMPUTE MODULE MQGet_HandleFirstMessage
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+		SET OutputLocalEnvironment.Stub.Support.OutputTerminalName = 'out';
+		RETURN TRUE;
+	END;
+END MODULE;

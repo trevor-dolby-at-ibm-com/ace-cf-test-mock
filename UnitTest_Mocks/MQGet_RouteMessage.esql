@@ -1,0 +1,15 @@
+DECLARE messageCount SHARED INTEGER 0;
+
+CREATE COMPUTE MODULE MQGet_RouteMessage
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		IF messageCount = 0 THEN
+			PROPAGATE TO TERMINAL 'out1' FINALIZE NONE DELETE NONE;
+			SET messageCount = messageCount + 1;
+			RETURN FALSE;
+		ELSE
+			SET messageCount = messageCount + 1;
+			RETURN TRUE;
+		END IF;
+	END;
+END MODULE;
