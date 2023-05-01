@@ -1,0 +1,17 @@
+
+
+CREATE COMPUTE MODULE TimerFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET Environment.messageCount = 0;
+		SET Environment.done = FALSE;
+		
+		WHILE Environment.done <> TRUE DO
+            PROPAGATE TO TERMINAL 'out1' FINALIZE NONE DELETE NONE;
+        END WHILE;
+        
+        SET OutputRoot.Properties = InputProperties;
+        SET OutputRoot.JSON.Data.count = Environment.messageCount;
+		RETURN TRUE;
+	END;
+END MODULE;

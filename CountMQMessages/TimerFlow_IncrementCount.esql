@@ -1,0 +1,9 @@
+
+
+CREATE COMPUTE MODULE TimerFlow_IncrementCount
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET Environment.messageCount = Environment.messageCount + 1;
+		RETURN TRUE;
+	END;
+END MODULE;
