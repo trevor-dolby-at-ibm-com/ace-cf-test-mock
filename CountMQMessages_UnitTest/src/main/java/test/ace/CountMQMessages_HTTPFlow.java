@@ -27,20 +27,21 @@ class CountMQMessages_HTTPFlow {
 	@Test
 	public void wholeFlowTestWithMockedMQ() throws TestException
 	{
-
+		// Define the SpyObjectReference objects
 		SpyObjectReference mqgetRef = new SpyObjectReference().application("CountMQMessages")
 				.messageFlow("HTTPFlow").node("MQ Get");
-
-		// Define the SpyObjectReference objects
 		SpyObjectReference httpInputObjRef = new SpyObjectReference().application("CountMQMessages")
 				.messageFlow("HTTPFlow").node("HTTP Input");
 		SpyObjectReference httpReplyObjRef = new SpyObjectReference().application("CountMQMessages")
 				.messageFlow("HTTPFlow").node("HTTP Reply");
+		SpyObjectReference incrementCountObjRef = new SpyObjectReference().application("CountMQMessages")
+				.messageFlow("HTTPFlow").node("IncrementCount");
 
-		// Initialise NodeSpy objects
-		NodeSpy httpInputSpy = new NodeSpy(httpInputObjRef);
-		NodeSpy httpReplySpy = new NodeSpy(httpReplyObjRef);
 		
+		// Initialise NodeSpy objects
+		NodeSpy httpInputSpy = new NodeSpy(httpInputObjRef); // Input
+		NodeSpy httpReplySpy = new NodeSpy(httpReplyObjRef); // Reply
+		NodeSpy incrementCountSpy = new NodeSpy(incrementCountObjRef); // Validation - should be called only once
 		
 		// Initialize the service stub to avoid needing an API key for unit testing
 		NodeStub mqgetStub = new NodeStub(mqgetRef);
@@ -69,7 +70,11 @@ class CountMQMessages_HTTPFlow {
 		// actual client. This line is where the flow is actually run.
 		httpInputSpy.propagate(inputMessageAssembly, "out");
 
-        /* Compare Output Message 1 at output terminal out */
+
+		// Assert we only had one valid message
+		assertThat(incrementCountSpy, nodeCallCountIs(1));
+
+		/* Compare Output Message 1 at output terminal out */
         TestMessageAssembly actualMessageAssembly = httpReplySpy.receivedMessageAssembly("in", 1);
         // Validate the results
         assertThat(actualMessageAssembly.messagePath("JSON.Data.count").getLongValue(), equalTo(1L));	
