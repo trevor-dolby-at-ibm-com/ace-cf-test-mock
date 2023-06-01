@@ -59,7 +59,7 @@ so the default is to propagate to the "No Message" terminal:
 ```
     mqgetStub.onCall().invokesCallableFlow("in",  "noMessage", "UnitTest_Mocks", "MQGetMock");
 ```
-(see [CountMQMessages_HTTPFlow.java](CountMQMessages_UnitTest/src/main/java/test/ace/CountMQMessages_HTTPFlow.java) for details).
+(see [CountMQMessages_HTTPFlow.java](CountMQMessages_UnitTest/src/main/java/test/ace/CountMQMessages_HTTPFlow_UnitTest.java) for details).
 
 When combined with the main flow and the unit test itself, the overall picture is
 
