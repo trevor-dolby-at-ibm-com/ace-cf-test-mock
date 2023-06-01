@@ -45,6 +45,8 @@ and provides the needed dynamic capabilities. The "FirstMessage" and "DefaultMes
 nodes that will themselves be mocked by the unit test: the unit test knows which messages it is expecting
 and so is the obvious place to specify which messages should be loaded. It is possible to load stored
 messages (mxml files) in the flow itself, but it is much easier to use the standard unit test capabilities.
+See the `setUpMock()` method in [CountMQMessages_HTTPFlow_UnitTest.java](CountMQMessages_UnitTest/src/main/java/test/ace/CountMQMessages_HTTPFlow_UnitTest.java)
+for details on this second level of mocking.
 
 The "HandleFirstMessage" and "HandleDefaultMessage" nodes are Compute nodes that can alter the output
 terminal from which the loaded message is propagated. This allows the callable flow to choose which 
@@ -59,7 +61,7 @@ so the default is to propagate to the "No Message" terminal:
 ```
     mqgetStub.onCall().invokesCallableFlow("in",  "noMessage", "UnitTest_Mocks", "MQGetMock");
 ```
-(see [CountMQMessages_HTTPFlow.java](CountMQMessages_UnitTest/src/main/java/test/ace/CountMQMessages_HTTPFlow_UnitTest.java) for details).
+(see [CountMQMessages_HTTPFlow_UnitTest.java](CountMQMessages_UnitTest/src/main/java/test/ace/CountMQMessages_HTTPFlow_UnitTest.java) for details).
 
 When combined with the main flow and the unit test itself, the overall picture is
 
