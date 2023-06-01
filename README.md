@@ -1,5 +1,5 @@
 # ace-cf-test-mock
-Examples of using callable flows as test mocks for ACE testing
+Examples of using callable flows as test mocks for ACE testing for ACE 12.0.8 and later.
 
 The main application in this repo relies on MQ in a way that can seem difficult to test without having 
 an actual queue manager available; while it is possible to test this flow with component tests 
@@ -76,4 +76,5 @@ flow end-to-end and verify the behavior is as expected.
 - The test project references both main application and the mock provider application to ensure they are both deployed.
 - Message flow threads must be started, which is not the default for unit test projects. The [launch configuration](CountMQMessages_UnitTest/CountMQMessages_UnitTest.launch)
   for the unit test project has `startFlowThreads` set to true for this reason.
+- ACE 12.0.8 is required in order to be able to specify the output terminal in the callable flow.
 
