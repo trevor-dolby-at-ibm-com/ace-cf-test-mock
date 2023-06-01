@@ -16,7 +16,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.equalTo;
 
-class CountMQMessages_HTTPFlow {
+class CountMQMessages_HTTPFlow_UnitTest {
 
 	@AfterEach
 	public void cleanupTest() throws TestException {
